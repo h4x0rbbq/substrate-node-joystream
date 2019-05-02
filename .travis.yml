@@ -1,0 +1,32 @@
+# Mac OS X 10.14 Mojabe build.
+osx_image: xcode10.2
+language: rust
+rust:
+    - nightly-2019-04-30
+
+addons:
+    homebrew:
+        packages:
+            - git 2.20.1
+            - cmake 3.14.3
+            - openssl 1.0.2r
+            - pkg-config 0.29.2
+            - llvm 8.0.0
+    
+before_script:
+    - rustup update nightly-2019-04-30
+    - rustup target add wasm32-unknown-unknown --toolchain nightly-2019-04-30
+    - cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc --force
+    
+script:
+    - mkdir /Users/travis/Joystream && cd /Users/travis/Joystream
+    - git clone git@github.com:h4x0rbbq/substrate-node-joystream.git
+    - cd substrate-node-joystream
+    - git clone git@github.com:h4x0rbbq/substrate-runtime-joystream.git
+    - ./build-runtime.sh
+    - cargo +nightly-2019-04-30 build --release
+    - cargo +nightly-2019-04-30 install --path ./
+
+after_script:
+    - /Users/travis/.cargo/bin/joystream-node --version
+
