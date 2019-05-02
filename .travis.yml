@@ -3,6 +3,7 @@ osx_image: xcode10.2
 language: rust
 rust:
     - nightly-2019-04-30
+cache: cargo
 
 addons:
     homebrew:
@@ -25,8 +26,5 @@ script:
     - git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git
     - ./build-runtime.sh
     - cargo +nightly-2019-04-30 build --release
-    - cargo +nightly-2019-04-30 install --path ./
-
-after_script:
-    - ~/.cargo/bin/joystream-node --version
+    - target/release/joystream-node --version
 
