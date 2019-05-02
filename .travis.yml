@@ -19,14 +19,14 @@ before_script:
     - cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc --force
     
 script:
-    - mkdir /Users/travis/Joystream && cd /Users/travis/Joystream
-    - git clone git@github.com:h4x0rbbq/substrate-node-joystream.git
+    - mkdir ~/Joystream && cd ~/Joystream
+    - git clone https://github.com/h4x0rbbq/substrate-node-joystream.git
     - cd substrate-node-joystream
-    - git clone git@github.com:h4x0rbbq/substrate-runtime-joystream.git
+    - git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git
     - ./build-runtime.sh
     - cargo +nightly-2019-04-30 build --release
     - cargo +nightly-2019-04-30 install --path ./
 
 after_script:
-    - /Users/travis/.cargo/bin/joystream-node --version
+    - ~/.cargo/bin/joystream-node --version
 
