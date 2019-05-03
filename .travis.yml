@@ -33,14 +33,18 @@ env:
     - EM_USE_GLOBAL_CACHE=1
 jobs: 
   include: 
-    - 
+    - stage: build_it
+      script:
+        - "./build-runtime.sh" 
+        
+    - stage: build_it
       script: 
         - "cargo +nightly-2019-04-30 build --release"
-      stage: build_it
-    - 
+        
+    - stage: and_run_it
       script: 
         - "./target/release/joystream-node --version"
-      stage: and_run_it
+        
 language: rust
 osx_image: xcode10.2
 rust: 
