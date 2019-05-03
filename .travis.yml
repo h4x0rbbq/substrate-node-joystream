@@ -49,8 +49,6 @@ jobs:
   include:
     - stage: build_it
         script: ./build-runtime.sh
-     
-    - stage: build_it
         script:
            - cargo +nightly-2019-04-30 build --release
     
