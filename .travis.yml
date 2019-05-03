@@ -7,7 +7,7 @@ cache:
     directories:
         - /home/travis/.cargo
         - $TRAVIS_BUILD_DIR/substrate-node-joystream/target
-        - $TRAVIS_BUILD_DIR/substrate-node-joystream/substrate-runtime-joystream/target
+        - $TRAVIS_BUILD_DIR/substrate-node-joystream/substrate-runtime-joystream/wasm/target
 
 addons:
     homebrew:
