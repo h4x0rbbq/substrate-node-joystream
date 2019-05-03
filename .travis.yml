@@ -34,7 +34,7 @@ script:
     - "cp -R temp/* substrate-runtime-joystream"
     - "./build-runtime.sh &"
     - "cargo +nightly-2019-04-30 build --release"
-    -"./target/release/joystream-node --version"
+    - "./target/release/joystream-node --version"
 
         
 language: rust
