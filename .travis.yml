@@ -32,9 +32,6 @@ before_script:
     - rustup update nightly-2019-04-30
     - rustup target add wasm32-unknown-unknown --toolchain nightly-2019-04-30
     - cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc --force
-    
-    # Pulls in node and run time from Github.
-    # Building is done is parallel (as much as possible.)
     - cd /home/travis/
     - rm -rf temp && mkdir temp
     - git clone https://github.com/h4x0rbbq/substrate-node-joystream.git temp/
@@ -47,7 +44,6 @@ before_script:
     - mkdir -p substrate-runtime-joystream
     - git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git temp/
     - cp -R temp/* substrate-runtime-joystream
-    - cd /home/travis/substrate-node-joystream
     
 jobs:
   include:
@@ -56,7 +52,7 @@ jobs:
       script: cargo +nightly-2019-04-30 build --release
     
     - stage: and_run_it
-       script: target/release/joystream-node --version
+      script: target/release/joystream-node --version
       
 stages:
   - build_it
