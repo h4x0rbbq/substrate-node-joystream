@@ -6,52 +6,40 @@ addons:
       - "openssl 1.0.2r"
       - "pkg-config 0.29.2"
       - "llvm 8.0.0"
-cache: 
-  cargo: true
+cache:
   directories: 
-    - /home/travis/.cargo/bin
+    - /home/travis/.cargo
     - /home/travis/substrate-node-joystream/target
     - /home/travis/substrate-node-joystream/substrate-runtime-joystream/wasm/target
 env: 
   global: 
     - EM_USE_GLOBAL_CACHE=1
-jobs: 
-  include: 
-    - stage: do_setup
-      script:
-        - "rustup update nightly-2019-04-30"
-        - "rustup target add wasm32-unknown-unknown --toolchain nightly-2019-04-30"
-        - "cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc || true"
-        - "cd /home/travis/"
-        - "rm -rf temp && mkdir temp"
-        - "git clone https://github.com/h4x0rbbq/substrate-node-joystream.git temp/"
-        - "mkdir -p substrate-node-joystream"
-        - "cp -R temp/* substrate-node-joystream"
-        - "cd substrate-node-joystream"
-        - "rm -rf target/release/joystream-node"
-        - "rm -rf is_built"
-        - "rm -rf temp && mkdir temp"
-        - "mkdir -p substrate-runtime-joystream"
-        - "git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git temp/"
-        - "cp -R temp/* substrate-runtime-joystream"
-    - stage: build_it
-      script:
-        - "./build-runtime.sh" 
-        
-    - stage: build_it
-      script: 
-        - "cargo +nightly-2019-04-30 build --release"
-        
-    - stage: and_run_it
-      script: 
-        - "./target/release/joystream-node --version"
+
+
+script:
+    - "rustup update nightly-2019-04-30"
+    - "rustup target add wasm32-unknown-unknown --toolchain nightly-2019-04-30"
+    - "cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc || true"
+    - "cd /home/travis/"
+    - "rm -rf temp && mkdir temp"
+    - "git clone https://github.com/h4x0rbbq/substrate-node-joystream.git temp/"
+    - "mkdir -p substrate-node-joystream"
+    - "cp -R temp/* substrate-node-joystream"
+    - "cd substrate-node-joystream"
+    - "rm -rf target/release/joystream-node"
+    - "rm -rf is_built"
+    - "rm -rf temp && mkdir temp"
+    - "mkdir -p substrate-runtime-joystream"
+    - "git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git temp/"
+    - "cp -R temp/* substrate-runtime-joystream"
+    - "./build-runtime.sh &"
+    - "cargo +nightly-2019-04-30 build --release"
+    -"./target/release/joystream-node --version"
+
         
 language: rust
 osx_image: xcode10.2
 rust: 
   - nightly-2019-04-30
-stages: 
-  - do_setup
-  - build_it
-  - and_run_it
+
 sudo: true
