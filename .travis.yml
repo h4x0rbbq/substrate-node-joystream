@@ -3,7 +3,12 @@ osx_image: xcode10.2
 language: rust
 rust:
     - nightly-2019-04-30
-cache: cargo
+cache:
+    cargo
+    directories:
+        /home/travis/.cargo
+        $TRAVIS_BUILD_DIR/target
+        $TRAVIS_BUILD_DIR/substrate-runtime-joystream/target
 
 addons:
     homebrew:
