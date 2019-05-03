@@ -2,13 +2,6 @@
 name = 'joystream-node'
 path = 'src/main.rs'
 
-[package]
-authors = ['Joystream']
-build = 'build.rs'
-edition = '2018'
-name = 'joystream-node'
-version = '1.0.0'
-
 [dependencies]
 error-chain = '0.12'
 exit-future = '0.1'
@@ -93,3 +86,10 @@ panic = 'unwind'
 
 [build-dependencies]
 vergen = '3'
+
+[package]
+authors = ['Joystream']
+build = 'build.rs'
+edition = '2018'
+name = 'joystream-node'
+version = '1.0.0'
