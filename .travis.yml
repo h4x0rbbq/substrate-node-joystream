@@ -20,7 +20,7 @@ before_script:
     - cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc --force
     
 script:
-    - mkdir ~/Joystream && cd ~/Joystream
+    - cd $TRAVIS_BUILD_DIR
     - git clone https://github.com/h4x0rbbq/substrate-node-joystream.git
     - cd substrate-node-joystream
     - git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git
