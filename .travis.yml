@@ -6,8 +6,8 @@ rust:
 cache:
     directories:
         - /home/travis/.cargo
-        - $TRAVIS_BUILD_DIR/target
-        - $TRAVIS_BUILD_DIR/substrate-runtime-joystream/target
+        - $TRAVIS_BUILD_DIR/substrate-node-joystream/target
+        - $TRAVIS_BUILD_DIR/substrate-node-joystream/substrate-runtime-joystream/target
 
 addons:
     homebrew:
