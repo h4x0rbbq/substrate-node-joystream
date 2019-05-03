@@ -40,6 +40,7 @@ script:
     - mkdir -p substrate-node-joystream
     - cp -R temp/* substrate-node-joystream
     - cd substrate-node-joystream
+    - rm -rf is_built
     - rm -rf temp && mkdir temp
     - mkdir -p substrate-runtime-joystream
     - git clone https://github.com/h4x0rbbq/substrate-runtime-joystream.git temp/
