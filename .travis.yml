@@ -4,8 +4,8 @@ language: rust
 rust:
     - nightly-2019-04-30
 cache:
+    cargo: true
     directories:
-        - /home/travis/.cargo
         - $TRAVIS_BUILD_DIR/substrate-node-joystream/target
         - $TRAVIS_BUILD_DIR/substrate-node-joystream/substrate-runtime-joystream/wasm/target
 
