@@ -48,7 +48,7 @@ before_script:
 jobs:
   include:
     - stage: build_it
-     - script: ./build-runtime.sh
+     script: ./build-runtime.sh
      - script: cargo +nightly-2019-04-30 build --release
     
     - stage: and_run_it
