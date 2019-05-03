@@ -48,13 +48,13 @@ before_script:
 jobs:
   include:
     - stage: build_it
-     script: ./build-runtime.sh
+        script: ./build-runtime.sh
      
     - stage: build_it
-     script: cargo +nightly-2019-04-30 build --release
+        script: cargo +nightly-2019-04-30 build --release
     
     - stage: and_run_it
-      script: target/release/joystream-node --version
+        script: target/release/joystream-node --version
       
 stages:
   - build_it
