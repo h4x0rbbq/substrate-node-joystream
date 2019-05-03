@@ -1,5 +1,6 @@
 # Mac OS X 10.14 Mojabe build.
 osx_image: xcode10.2
+sudo: false
 language: rust
 rust:
     - nightly-2019-04-30
