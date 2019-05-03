@@ -1,4 +1,3 @@
---- 
 addons: 
   homebrew: 
     packages: 
@@ -10,8 +9,9 @@ addons:
 cache: 
   cargo: true
   directories: 
-    - $TRAVIS_BUILD_DIR/substrate-node-joystream/target
-    - $TRAVIS_BUILD_DIR/substrate-node-joystream/substrate-runtime-joystream/wasm/target
+    - /home/travis/.cargo/bin
+    - /home/travis/substrate-node-joystream/target
+    - /home/travis/substrate-node-joystream/substrate-runtime-joystream/wasm/target
 env: 
   global: 
     - EM_USE_GLOBAL_CACHE=1
@@ -21,7 +21,7 @@ jobs:
       script:
         - "rustup update nightly-2019-04-30"
         - "rustup target add wasm32-unknown-unknown --toolchain nightly-2019-04-30"
-        - "cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc"
+        - "cargo +nightly-2019-04-30 install --git https://github.com/alexcrichton/wasm-gc || true"
         - "cd /home/travis/"
         - "rm -rf temp && mkdir temp"
         - "git clone https://github.com/h4x0rbbq/substrate-node-joystream.git temp/"
